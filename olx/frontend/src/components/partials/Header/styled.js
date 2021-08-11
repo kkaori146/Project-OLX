@@ -33,4 +33,44 @@ a {
     .logo-2 {color:#0F0;}
     .logo-3 {color:#00F;}
 }
+
+nav {
+    padding-top:10px;
+    padding-bottom:10px;
+
+    ul, li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    ul {
+        display: flex;
+        align-items: center;
+        height: 40px;
+    }
+    li {
+        margin-left:20px;
+        margin-right:20px;
+
+        a {
+            color: #000;
+            font-size: 14px;
+            text-decoration: none;
+
+            &: hover {
+               color: #999;
+            }
+            &.button {
+                background-color:#FF8100;
+                border-radius: 4px;
+                color: #FFF;
+                padding: 5px 10px;
+
+            }
+            &.button:hover {
+                background-color: #E57706;
+            }
+        }
+    }
+}
 `;

@@ -7,12 +7,25 @@ const Header = () => {
         <HeaderArea>
             <div className="container">
                 <div className="logo">
-<Link to="/">
-<span className="logo-1">K</span>
-<span className="logo-2">Y</span>
-<span className="logo-3">W</span>
-</Link>
+                    <Link to="/">
+                        <span className="logo-1">K</span>
+                        <span className="logo-2">Y</span>
+                        <span className="logo-3">W</span>
+                    </Link>
                 </div>
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="">Login</Link>
+                        </li>
+                        <li>
+                            <Link to="">Cadastrar</Link>
+                        </li>
+                        <li>
+                            <Link to="" className="button">Anuncie</Link>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </HeaderArea>
     );
