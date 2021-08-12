@@ -10,7 +10,7 @@ const Page = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [rememberPassword, setRememberPassword] = useState('false');
+    const [rememberPassword, setRememberPassword] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const [error, setError] = useState('');
 
@@ -28,6 +28,7 @@ const Page = () => {
             window.location.href ='/';
 
         }
+        setDisabled(false);
     }
 
     return (
