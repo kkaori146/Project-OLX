@@ -29,6 +29,7 @@ body:JSON.stringify(body)
     return json;
 }
 
+
 const apiFetchGet = async (endpoint, body = []) => {
     if(!body.token) {
         let token = Cookies.get('token');
@@ -56,6 +57,12 @@ login: async (email, password) => {
     {email, password}
     );
     return json;
+},
+getStates: async () => {
+    const json = await apiFetchGet(
+        '/states'
+    );
+    return json.states;
 }
 };
 
