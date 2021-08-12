@@ -50,9 +50,8 @@ form {
                 color: #FFF;
                 font-size: 15px;
                 cursor: pointer;
-                
 
-                &:hover{
+                &:hover {
                     background-color:#006FCE;
                 }
             }

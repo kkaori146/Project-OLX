@@ -59,7 +59,7 @@ nav {
             font-size: 14px;
             text-decoration: none;
             cursor:pointer;
-            outline: 0
+            outline: 0;
 
             &: hover {
                color: #999;
