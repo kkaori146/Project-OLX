@@ -58,6 +58,15 @@ login: async (email, password) => {
     );
     return json;
 },
+
+register: async (name, email, password, stateLoc) => {
+    const json = await apiFetchPost(
+        '/user/signup',
+        {name, email, password, state:stateLoc}
+    );
+    return json;
+},
+
 getStates: async () => {
     const json = await apiFetchGet(
         '/states'
