@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {useParams, Link} from 'react-router-dom';
-import {Slide} from 'react-slideshow-image';
+import { Slide } from 'react-slideshow-image';
 import {PageArea, Fake, OthersArea, BreadChumb} from './styled';
 import useApi from '../../helpers/OlxAPI';
 import { PageContainer } from '../../components/MainComponents';
@@ -120,11 +120,9 @@ getInfo(id);
                </div>   
                  
     </PageArea>
-
     <OthersArea>
 
-
-    </OthersArea>
+    
     {info.others &&
                <>
 
@@ -138,6 +136,7 @@ getInfo(id);
 
                </>
                }  
+               </OthersArea>
 </PageContainer>
     );
 }

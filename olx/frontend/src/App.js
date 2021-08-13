@@ -10,15 +10,12 @@ import Routes from './Routes';
 const Page = (props) => {
   return (
     <BrowserRouter>
-    <Template>
-
-     <Header/>
-     <Routes/>
-     <Footer/>
-
+      <Template>
+        <Header />
+        <Routes />
+         <Footer />
     </Template>
     </BrowserRouter>
-   
   );
 }
 
@@ -27,7 +24,7 @@ const mapStateToProps = (state) => {
     user:state.user
   };
 }
-const mapDispatchToProps = (dispatch) =>{
+const mapDispatchToProps = (dispatch) => {
   return {
 
   };

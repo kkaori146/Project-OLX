@@ -67,7 +67,7 @@ padding: 20px 0;
             color: #999;
         }
 
-        img{
+        img {
             width: 45px;
             height: 45px;
             margin-right: 10px;
@@ -84,11 +84,12 @@ h2 {
 
 .list {
     display: flex;
-    dlex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .aditem {
     width: 25%;
+}
 }
 
 .seeAllLink {

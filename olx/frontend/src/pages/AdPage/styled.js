@@ -122,7 +122,7 @@ h2 {
 `;
 
 export const BreadChumb =styled.div`
-fint-size: 13px;
+font-size: 13px;
 margin-top: 20px;
 
 a {

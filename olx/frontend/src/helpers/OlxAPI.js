@@ -76,7 +76,7 @@ getStates: async () => {
 },
 
 getCategories:async () => {
-    const json =await apiFetchGet (
+    const json = await apiFetchGet (
         '/categories'
     );
     return json.categories;
@@ -91,7 +91,7 @@ getAds:async (options) => {
 },
 
 getAd:async(id, other = false) => {
-    const json =await apiFetchGet (
+    const json = await apiFetchGet (
         '/ad/item',
         {id, other}
     );

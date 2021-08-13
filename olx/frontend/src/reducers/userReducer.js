@@ -1,5 +1,5 @@
 const initialState = {
-email:''
+    email:''
 };
 
 export default (state = initialState, action) => {
