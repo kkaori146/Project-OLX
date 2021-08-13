@@ -87,6 +87,10 @@ h2 {
     dlex-wrap: wrap;
 }
 
+.aditem {
+    width: 25%;
+}
+
 .seeAllLink {
     color: #000;
     text-decoration: none;
