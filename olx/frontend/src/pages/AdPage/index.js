@@ -85,10 +85,27 @@ getInfo(id);
            <div className="rightSide">
                <div className="box box--padding">
                {loading && <Fake height={20}/>}
+               {info.priceNegotiable &&
+               "Preço Negociável"
+                }
+                {!info.priceNegotiable && info.price &&
+                <div className="price">Preço: <span>R${info.price}</span></div>
+                }
                </div>
-               <div className="box box--padding">
                {loading && <Fake height={50}/>}
-                   </div>
+               {info.userInfo &&
+                <>
+                <a href={`mailto: ${info.userInfo.email}`} target="_blank" className="contactSellerLink">Contacte o Vendendor</a>
+                    <div className=" createdBy box box--padding">
+                      
+                        <strong>{info.userInfo.name}</strong>
+                        <small>E-mail: {info.userInfo.email}</small>
+                        <small>Estado: {info.stateName}</small>
+               </div>
+
+                </>
+               }
+           
 
                </div>        
     </PageArea>
