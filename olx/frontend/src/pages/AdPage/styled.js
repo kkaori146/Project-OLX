@@ -105,3 +105,31 @@ width: 250px;
 
 
 `;
+
+export const OthersArea = styled.div`
+h2 {
+    font-size: 20px;
+}
+.list {
+    display: flex;
+
+    .aditem {
+        width: 25%;
+    }
+
+}
+
+`;
+
+export const BreadChumb =styled.div`
+fint-size: 13px;
+margin-top: 20px;
+
+a {
+display: inline-block;
+margin: 0px 5px;
+text-decoration: underline;
+color: #000;
+}
+
+`;
