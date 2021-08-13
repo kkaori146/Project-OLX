@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {useParams} from 'react-router-dom';
+import {Slide} from 'react-slideshow-image';
+
 import {PageArea, Fake} from './styled';
 import useApi from '../../helpers/OlxAPI';
 import { PageContainer } from '../../components/MainComponents';
@@ -46,6 +48,15 @@ getInfo(id);
            <div className="box">
                <div className="adImage">
                         {loading && <Fake height={300}/>}
+                        {info.images &&
+                        <Slide>
+                            {info.images.map((img,k) =>
+                            <div key={k} className = "each-slide">
+                                    <img src={img} alt="" />
+                            </div>
+                            )}
+                        </Slide>
+                        }
                </div>
                 <div className="info">
                     <div className="adName">

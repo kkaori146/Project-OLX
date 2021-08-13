@@ -25,19 +25,48 @@ margin-top: 20px;
 flex:1;
 margin-right: 20px;
 
+.box {
+    display: flex;
+}
+
 .adImage {
+    width: 320px;
+    height: 320px;
+    margin-right: 20px;
+
+    .each-slide img{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: cover;
+        height: 320px;
+
+    }
 
 }
 
 .info {
-    padding: 10px;
+    flex: 1;
 
     .adName {
 margin-bottom: 20px;
 
+h2 {
+    margin-top: 20px;
+    padding-top: 15px;
+    margin: 0;
+
+}
+small {
+    color: #999;
+}
+
     }
 
     .adDescription {
+        small {
+            color: #999;
+        }
 
     }
     }
