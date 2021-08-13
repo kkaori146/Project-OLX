@@ -29,7 +29,7 @@ margin-right: 20px;
 
 }
 
-.adInfo {
+.info {
     padding: 10px;
 
     .adName {

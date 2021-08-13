@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useParams} from 'react-router-dom';
 import {PageArea, Fake} from './styled';
 import useApi from '../../helpers/OlxAPI';
@@ -12,9 +12,32 @@ const Page = () => {
     const {id} = useParams();
 
     const [loading, setLoading] = useState(true);
-    const [adInfo, setAdInfo] = useState([]);
+    const [info, setInfo] = useState({});
 
-      
+    useEffect(()=> {
+        const getInfo = async (id) => {
+            const json = await api.getAd(id, true);
+            console.log(json);
+            setInfo(json);
+            setLoading(false);
+
+}
+getInfo(id);
+
+    }, []);
+
+    const formatDate   = (date) => {
+        let cDate = new Date (date);
+
+        let months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+        let cDay = cDate.getDate();
+        let cMonth = cDate.getMonth();
+        let cYear = cDate.getFullYear();
+
+        return `${cDay} de ${months[cMonth]} de ${cYear}`;
+
+    }
+
     return (
 <PageContainer>
     
@@ -24,12 +47,24 @@ const Page = () => {
                <div className="adImage">
                         {loading && <Fake height={300}/>}
                </div>
-                <div className="adInfo">
+                <div className="info">
                     <div className="adName">
                         {loading && <Fake height={20}/>}
+
+                        {info.title &&
+                        <h2>{info.title}</h2>
+                        }
+                        {info.dateCreated &&
+                        <small>Criado em {formatDate(info.dateCreated)}</small>
+                        }
                     </div>
                     <div className="adDescription">
                         {loading && <Fake height={100}/>}
+                        {info.description}
+                        <hr/>
+                        {info.views &&
+                        <small>Visualizações: {info.views}</small>
+                        }
                   </div>
                 </div>
              </div>
