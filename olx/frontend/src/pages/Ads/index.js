@@ -25,9 +25,12 @@ const Page = () => {
     const [categories, setCategories] = useState([]);
     const [adList, setAdList] = useState([]);
     
-    const [resultOpacity, setResultOpacity] = useState(0.3);
+    const [resultOpacity, setResultOpacity] = useState(1);
+    const [warningMessage, setWarningMessage] = useState('Carregando...');
+    const [loading, setLoading] = useState(true);
 
     const getAdsList = async () => {
+        setLoading(true);
         const json = await api.getAds({
             sort:'desc',
             limit:9,
@@ -38,6 +41,7 @@ const Page = () => {
         });
         setAdList(json.ads);
         setResultOpacity(1);
+        setLoading(false);
     }
 
     useEffect(()=> {
@@ -122,10 +126,17 @@ const Page = () => {
                             </form>
 
                         </div>
-                        ...
+                        
 
                         <div className="rightSide">
                             <h2>Resultados</h2>
+
+                            {loading &&
+                                <div className="ListWarning">Carregando...</div>
+                            }
+                            {!loading && adList.length === 0 &&
+                                <div className="ListWarning">Nada foi encontrado!</div>
+                            }
                             <div className="list" style={{opacity:resultOpacity}}>
                                 {adList.map((i,k)=>
                                     <AdItem key={k} data={i}/>
