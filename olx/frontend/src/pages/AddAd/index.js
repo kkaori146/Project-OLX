@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {PageArea} from './styled';
 import useApi from '../../helpers/OlxAPI';
 import { PageContainer, PageTitle, ErrorMessage } from '../../components/MainComponents';
@@ -10,14 +10,24 @@ const Page = () => {
 
     const fileField = useRef();
 
+    const [categories, setCategories] = useState([]);  // diz respeito à lista
     const [title, setTitle] = useState('');
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState('');  //diz respeito ao item selecionado
     const [price, setPrice] = useState('');
     const [priceNegotiable, setPriceNegotiable] = useState(false);
     const [desc, setDesc] = useState('');
 
     const [disabled, setDisabled] = useState(false);
     const [error, setError] = useState('');
+
+    useEffect(()=>{
+        const getCategories = async () => {
+            const cats = await api.getCategories();
+            setCategories(cats);
+        }
+        getCategories();
+
+    }, []);
 
 
     const handleSubmit = async (e) => {
@@ -64,7 +74,17 @@ const Page = () => {
                         <label className="area">
                             <div className="area--title">Categoria</div>
                             <div className="area--input">
-                               <select></select>
+                               <select
+                                   disabled={disabled}
+                                   onChange={e=>setCategory(e.target.value)}
+                                   required
+                                >
+                                    <option></option>
+                                    {categories && categories.map(i=>
+                                        <option key={i._id} value={i._id}>{i.name}</option>
+                                    )}
+
+                                </select>
                             </div>
                         </label>
 
