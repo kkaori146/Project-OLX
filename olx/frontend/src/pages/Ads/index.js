@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {useLocation, useHistory} from 'react-router-dom';
 import {PageArea} from './styled';
 import useApi from '../../helpers/OlxAPI';
+
 import { PageContainer} from '../../components/MainComponents';
 import AdItem from '../../components/partials/AdItem';
 
@@ -37,12 +38,11 @@ const Page = () => {
 
         const json = await api.getAds({
             sort:'desc',
-            limit:2,
+            limit:3,
             q,
             cat,
             state,
             offset
-
         });
         setAdList(json.ads);
         setAdsTotal(json.total);
@@ -52,7 +52,7 @@ const Page = () => {
 
     useEffect(()=>{
         if (adList.length > 0) {
-           setPageCount(Math.ceil(adsTotal/adList.lenght ));
+           setPageCount(Math.ceil(adsTotal/adList.length ));
         } else {
             setPageCount(0);
         }
@@ -103,87 +103,75 @@ const Page = () => {
             setCategories(cats);
         }
         getCategories();
-            }, []);
+    }, []);
 
-            let pagination = [];
-            for (let i=1; i<=pageCount; i++) {
-                pagination.push(i);
-            }
+    let pagination = [];
+    for (let i=1; i<=pageCount; i++) {
+        pagination.push(i);
+    }
 
-  
-       
-            return (
-                <PageContainer>
-                    <PageArea>
-                        <div className="leftSide">
-                            <form method="GET">
-                                <input 
-                                    type="text" 
-                                    name="q" 
-                                    placeholder="O que você procura?"
-                                    value={q}
-                                    onChange={e=>setQ(e.target.value)}
-                                />
+    return (
+        <PageContainer>
+            <PageArea>
+                <div className="leftSide">
+                    <form method="GET">
+                        <input 
+                            type="text" 
+                            name="q" 
+                            placeholder="O que você procura?"
+                            value={q}
+                            onChange={e=>setQ(e.target.value)}
+                        />
 
-                                <div className="filterName">Estado:</div>
-                                <select name="state" value={state} onChange={e=>setState(e.target.value)} >
-                                    <option></option>
-                                    {stateList.map((i,k)=>
-                                        <option key={k} value={i.name}>{i.name}</option>
-                                    )}
-                                </select>
+                        <div className="filterName">Estado:</div>
+                        <select name="state" value={state} onChange={e=>setState(e.target.value)} >
+                            <option></option>
+                            {stateList.map((i,k)=>
+                                <option key={k} value={i.name}>{i.name}</option>
+                            )}
+                            </select>
 
-                                <div className="filterName">Categoria:</div>
-                                <ul>
-                                    {categories.map((i,k)=>
-                                        <li 
-                                        key={k} 
-                                        classname={cat==i.slug?'categoryItem active':'categoryItem'}
-                                        onClick={()=>setCat(i.slug)}
-                                        >
-                                            <img src={i.img} alt="" />
-                                            <span>{i.name}</span>
-                                        </li>
-                                    )}
-
-                                </ul>
-                            
-                            
-                            </form>
-
-                        </div>
-                        
-
-                        <div className="rightSide">
-                            <h2>Resultados</h2>
-
-                            {loading && adList.length === 0 &&
-                                <div className="ListWarning">Carregando...</div>
-                            }
-                            {!loading && adList.length === 0 &&
-                                <div className="ListWarning">Nada foi encontrado!</div>
-                            }
-                            <div className="list" style={{opacity:resultOpacity}}>
-                                {adList.map((i,k)=>
-                                    <AdItem key={k} data={i}/>
-                                
+                            <div className="filterName">Categoria:</div>
+                            <ul>
+                                {categories.map((i,k)=>
+                                    <li 
+                                    key={k} 
+                                    classname={cat==i.slug?'categoryItem active':'categoryItem'}
+                                    onClick={()=>setCat(i.slug)}
+                                    >
+                                        <img src={i.img} alt="" />
+                                        <span>{i.name}</span>
+                                    </li>
                                 )}
-                            </div>
+                            </ul>
+                        </form>
+                    </div>
+                        
+                    <div className="rightSide">
+                        <h2>Resultados</h2>
 
-                            <div className="pagination">
-                               {pagination.map((i,k)=>
-                                    <div onClick={()=>setCurrentPage(i)} className={i===currentPage?'pagItem active':'pagItem'}>{i}</div>
-                               
-                               )}
-                            </div>
-
+                        {loading && adList.length === 0 &&
+                            <div className="listWarning">Carregando...</div>
+                        }
+                        {!loading && adList.length === 0 &&
+                            <div className="listWarning">Nada foi encontrado!</div>
+                        }
+                        <div className="list" style={{opacity:resultOpacity}}>
+                            {adList.map((i,k)=>
+                                <AdItem key={k} data={i}/>
+                            )}
                         </div>
-                    </PageArea>
 
-                </PageContainer>
-                
-            );
-        }
+                        <div className="pagination">
+                            {pagination.map((i,k)=>
+                                <div onClick={()=>setCurrentPage(i)} className={i===currentPage?'pagItem active':'pagItem'}>{i}</div>
+                            )}
+                        </div>
 
-        export default Page;
+                    </div>
+                </PageArea>
+            </PageContainer>
+        );
+    }
+export default Page;
         

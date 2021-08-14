@@ -11,11 +11,10 @@ margin-top: 20px;
     .filterName {
         font-size: 15px;
         margin: 10px 0;
-
     }
 
     input, select {
-        width: 100%;
+        width: auto;
         height: 40px;
         border: 2px solid #9BB83C;
         border-radius: 5px;
@@ -23,7 +22,6 @@ margin-top: 20px;
         font-size: 15px;
         color: #000;
         padding: 10px;
-
     }
 
     ul, li {

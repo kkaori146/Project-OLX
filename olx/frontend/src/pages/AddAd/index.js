@@ -8,13 +8,12 @@ import { PageContainer, PageTitle, ErrorMessage } from '../../components/MainCom
 
 
 const Page = () => {
-
     const api = useApi();
-
     const fileField = useRef();
     const history = useHistory();
 
     const [categories, setCategories] = useState([]);  // diz respeito à lista
+
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');  //diz respeito ao item selecionado
     const [price, setPrice] = useState('');
@@ -30,25 +29,23 @@ const Page = () => {
             setCategories(cats);
         }
         getCategories();
-
     }, []);
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setDisabled(true);
         setError('');
-
         let errors = [];
+
         if(!title.trim()) {
-        errors.push('Sem título');
+            errors.push('Sem título');
         }
 
         if(!category) {
             errors.push('Sem categoria');
         }
-        if(errors.length===0) {
 
+        if(errors.length===0) {
             const fData = new FormData();
             fData.append('title', title);
             fData.append('price', price);
@@ -67,9 +64,8 @@ const Page = () => {
             if(!json.error) {
                 history.push(`/ad/${json.id}`);
                 return;
-
             } else {
-                setError(errors.join("/n"));
+                setError(json.error);
             }
 
         } else {
@@ -94,7 +90,7 @@ const Page = () => {
             <PageArea>
                 {error &&
                     <ErrorMessage>{error}</ErrorMessage>
-        }
+                }
 
                 <form onSubmit={handleSubmit}>
                     <label className="area">
@@ -107,22 +103,21 @@ const Page = () => {
                                 onChange={e=>setTitle(e.target.value)}
                                 required
                             />
-                            </div>
-                        </label>
+                        </div>
+                    </label>
 
-                        <label className="area">
-                            <div className="area--title">Categoria</div>
-                            <div className="area--input">
-                               <select
-                                   disabled={disabled}
-                                   onChange={e=>setCategory(e.target.value)}
-                                   required
-                                >
-                                    <option></option>
-                                    {categories && categories.map(i=>
+                    <label className="area">
+                        <div className="area--title">Categoria</div>
+                        <div className="area--input">
+                            <select
+                                disabled={disabled}
+                                onChange={e=>setCategory(e.target.value)}
+                                required
+                            >
+                                <option></option>
+                                {categories && categories.map(i=>
                                         <option key={i._id} value={i._id}>{i.name}</option>
                                     )}
-
                                 </select>
                             </div>
                         </label>
@@ -137,7 +132,7 @@ const Page = () => {
                                value={price}
                                onChange={e=>setPrice(e.target.value)}
                                
-                               />
+                                />
                             </div>
                         </label>
 
@@ -157,9 +152,9 @@ const Page = () => {
                             <div className="area--title">Descrição</div>
                             <div className="area--input">
                                <textarea
-                               disabled={disabled}
-                               value={desc}
-                               onChange={e=>setDesc(e.target.value)}
+                                    disabled={disabled}
+                                    value={desc}
+                                    onChange={e=>setDesc(e.target.value)}
                                ></textarea>
                             </div>
                         </label>
@@ -182,7 +177,6 @@ const Page = () => {
                                 <button disabled = {disabled}>Adicionar Anúncio</button>
                             </div>
                         </label>
-            
                     </form>
                 </PageArea>
             </PageContainer>

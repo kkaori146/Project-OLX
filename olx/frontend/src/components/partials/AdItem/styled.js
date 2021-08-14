@@ -12,7 +12,7 @@ a {
     background-color: #FFF;
     transition: all ease .2s;
 
-    &: hover{
+    &: hover {
         background-color: #EEE;
         border: 1px solid #CCC;
     }

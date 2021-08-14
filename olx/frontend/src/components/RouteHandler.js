@@ -8,10 +8,10 @@ export default ({children, ...rest}) => {
 
     return (
         <Route
-        {...rest}
-        render={()=>
-        authorized ? children : <Redirect to="/signin"/>
-        }
+            {...rest}
+            render={()=>
+                authorized ? children : <Redirect to="/signin"/>
+            }
         />
 
     );

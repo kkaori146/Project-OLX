@@ -38,27 +38,26 @@ form {
             &:focus {
                 border:1px solid #333;
                 color: #333;
-                }
             }
+        }
 
-            textarea {
-                height: 150px;
-                resize: none;
-            }
+        textarea {
+            height: 150px;
+            resize: none;
+        }
 
-            button {
-                background-color: #0089FF;
-                border: 0;
-                outline:0;
-                padding: 5px 10px;
-                border-radius: 4px;
-                color: #FFF;
-                font-size: 15px;
-                cursor: pointer;
+        button {
+            background-color: #0089FF;
+            border: 0;
+            outline:0;
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: #FFF;
+            font-size: 15px;
+            cursor: pointer;
                 
-
-                &:hover{
-                    background-color:#006FCE;
+            &:hover{
+                background-color:#006FCE;
                 }
             }
         }
