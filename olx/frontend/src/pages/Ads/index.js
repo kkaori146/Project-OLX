@@ -20,29 +20,38 @@ const Page = () => {
     const [cat, setCat] = useState( query.get('cat') != null ? query.get('cat') : '' );
     const [state, setState] = useState( query.get('state') != null ? query.get('state') : '' );
     
-
+    const [adsTotal, setAdsTotal] = useState(0);
     const [stateList, setStateList] = useState([]);
     const [categories, setCategories] = useState([]);
     const [adList, setAdList] = useState([]);
+    const [pageCount, setPageCount] = useState(0);
     
-    const [resultOpacity, setResultOpacity] = useState(1);
-    const [warningMessage, setWarningMessage] = useState('Carregando...');
+    const [resultOpacity, setResultOpacity] = useState(0.3);
     const [loading, setLoading] = useState(true);
 
     const getAdsList = async () => {
         setLoading(true);
         const json = await api.getAds({
             sort:'desc',
-            limit:9,
+            limit:2,
             q,
             cat,
             state
 
         });
         setAdList(json.ads);
+        setAdsTotal(json.total);
         setResultOpacity(1);
         setLoading(false);
     }
+
+    useEffect(()=>{
+        if (adList.length > 0) {
+           setPageCount(Math.ceil(adsTotal/adList.lenght ));
+        } else {
+            setPageCount(0);
+        }
+    }, [adsTotal]);
 
     useEffect(()=> {
         let queryString = [];
@@ -83,6 +92,11 @@ const Page = () => {
         }
         getCategories();
             }, []);
+
+            let pagination = [];
+            for (let i=1; i<=pageCount; i++) {
+                pagination.push(i);
+            }
 
   
        
@@ -142,6 +156,13 @@ const Page = () => {
                                     <AdItem key={k} data={i}/>
                                 
                                 )}
+                            </div>
+
+                            <div className="pagination">
+                               {pagination.map((i,k)=>
+                                    <div className="pagItem">{i}</div>
+                               
+                               )}
                             </div>
 
                         </div>

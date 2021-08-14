@@ -79,6 +79,26 @@ margin-top: 20px;
         .aditem {
             width: 33%;
         }
+    }
+
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+
+            .pagItem {
+                width: 30px;
+                height: 30px;
+                border: 1px solid #000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                dont-size: 14px;
+                margin-right: 5px;
+
+            }
+        
     } 
 }
 
