@@ -33,6 +33,7 @@ const Page = () => {
     }
 
     return (
+        <>
         <PageContainer>
             <PageTitle>Login</PageTitle>
             <PageArea>
@@ -89,6 +90,7 @@ const Page = () => {
                     </form>
                 </PageArea>
             </PageContainer>
+            </>
         );
 }
 export default Page;

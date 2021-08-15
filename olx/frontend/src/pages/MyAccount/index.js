@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import useAPI from '../../helpers/OlxAPI';
 import {PageArea} from './styled';
-import {PageContainer, Breadcrumb, MensagemDeErro} from '../../components/MainComponents';
+import {PageContainer, ErrorMessage} from '../../components/MainComponents';
 import { Link } from 'react-router-dom';
-import AdItemUser from '../../components/partials/AdItemUser';
+import AdItem from '../../components/partials/AdItem';
+import { BreadChumb } from '../AdPage/styled';
 
 const Page = () => {
     const api = useAPI();
@@ -14,13 +15,13 @@ const Page = () => {
     const [estado, setEstado]   = useState('');
     const [adsUser, setAdsUser] = useState([]);
     
-    const [desabled, setDesabled] = useState(false);
+    const [disabled, setDisabled] = useState(false);
     const [error, setError] = useState('');
 
     const [listaDeEstados, setListaDeEstados] = useState([]);
 
     useEffect(()=>{
-        const getDados = async () => {
+        const getDados = async() => {
             const dados = await api.getDados();
             setDados(dados);
             setNome(dados.name);
@@ -28,8 +29,8 @@ const Page = () => {
             setEstado(dados.state);
             setAdsUser(dados.ads);
         }
-        getDados();
-        // eslint-disable-next-line
+        
+      
     },[]);
 
     useEffect(()=>{
@@ -38,12 +39,12 @@ const Page = () => {
             setListaDeEstados(listaEstados);
         }
         getEstados();
-        // eslint-disable-next-line
+       
     },[]);
 
     const dadosUsuario = async (e) => {
         e.preventDefault();
-        setDesabled(true);
+        setDisabled(true);
         setError('');
 
         const json = await api.alteraUser(nome, estado, email);
@@ -55,7 +56,7 @@ const Page = () => {
             window.location.href = "/";
         }
 
-        setDesabled(false);
+        setDisabled(false);
     }
 
     document.title = "Minha Conta - Clone OLX";
@@ -63,16 +64,16 @@ const Page = () => {
     return(
         <>
             <PageContainer>
-                <Breadcrumb>
+                <BreadChumb>
                     Você está em:&ensp;
                     <Link to="/">Página Inicial</Link>
                     &ensp;&gt;&ensp;
                     Minha Conta
-                </Breadcrumb>
+             </BreadChumb>
                 <PageArea>
                     <h2>Minha Conta</h2>
                     {error &&
-                        <MensagemDeErro>{error}</MensagemDeErro>
+                        <ErrorMessage>{error}</ErrorMessage>
                     }
                     <div className="sessao">
                         <form onSubmit={dadosUsuario} >
@@ -82,7 +83,7 @@ const Page = () => {
                                     <label>Nome:</label>
                                     <input 
                                         type="text" 
-                                        disabled={desabled} 
+                                        disabled={disabled} 
                                         value={nome} 
                                         placeholder={dados.name}
                                         onChange={e=>setNome(e.target.value)}
@@ -96,7 +97,7 @@ const Page = () => {
                                         type="email"
                                         value={email} 
                                         placeholder={dados.email}
-                                        disabled={desabled}
+                                        disabled={disabled}
                                         onChange={e=>setEmail(e.target.value)}
                                     />
                                 </div>
@@ -105,7 +106,7 @@ const Page = () => {
                                 <div className="area">
                                     <label>Estado:</label>
                                     <select  
-                                        disabled={desabled} 
+                                        disabled={disabled} 
                                         onChange={e=>setEstado(e.target.value)}
                                     >
                                         {listaDeEstados.map((i, k)=>
@@ -116,7 +117,7 @@ const Page = () => {
                             </div>
                             <div className="shrink-3">
                                 <div className="area">
-                                    <button disabled={desabled}>Salvar</button>
+                                    <button disabled={disabled}>Salvar</button>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +127,7 @@ const Page = () => {
                     <div className="sessao">
                         <div className="anunciosUser">
                             {adsUser.map((i, k)=>
-                                <AdItemUser key={k} data={i}/>
+                                <AdItem key={k} data={i}/>
                             )}
                         </div>
                     </div>
