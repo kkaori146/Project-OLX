@@ -8,7 +8,7 @@ export const PageArea = styled.div`
         height:1px;
         margin:10px 0 30px;
     }
-    .sessao{
+    .session{
         background-color:#FFF;
         padding:20px;
         margin-bottom:30px;
@@ -43,7 +43,7 @@ export const PageArea = styled.div`
             flex-grow: 1;
             flex-shrink: 1;
         }
-        .shrink-3 {
+        .pag-3 {
             flex-grow: 1;
             flex-shrink: 3;
             flex-basis: 8%;
@@ -102,7 +102,7 @@ export const PageArea = styled.div`
                 flex-grow: 1;
                 flex-shrink: 1;
             }
-            .shrink-3 {
+            .pag-3 {
                 width:90%;
                 flex-grow: 1;
                 flex-shrink: 1;

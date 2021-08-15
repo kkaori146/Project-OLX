@@ -12,7 +12,7 @@ const Page = () => {
     const [dados, setDados] = useState([]);
     const [nome, setNome]       = useState('');
     const [email, setEmail]     = useState('');
-    const [estado, setEstado]   = useState('');
+    const [estates, setEstates]   = useState('');
     const [adsUser, setAdsUser] = useState([]);
     
     const [disabled, setDisabled] = useState(false);
@@ -26,7 +26,7 @@ const Page = () => {
             setDados(dados);
             setNome(dados.name);
             setEmail(dados.email);
-            setEstado(dados.state);
+            setEstates(dados.state);
             setAdsUser(dados.ads);
         }
         
@@ -34,11 +34,11 @@ const Page = () => {
     },[]);
 
     useEffect(()=>{
-        const getEstados = async () => {
+        const getEstates = async () => {
             const listaEstados = await api.getStates();
             setListaDeEstados(listaEstados);
         }
-        getEstados();
+        getEstates();
        
     },[]);
 
@@ -47,7 +47,7 @@ const Page = () => {
         setDisabled(true);
         setError('');
 
-        const json = await api.alteraUser(nome, estado, email);
+        const json = await api.alteraUser(nome, estates, email);
 
         if(json.error){
             setError(json.error);
@@ -78,7 +78,7 @@ const Page = () => {
                     <div className="sessao">
                         <form onSubmit={dadosUsuario} >
                         <div className="formConta">
-                            <div className="shrink-1">
+                            <div className="pag-1">
                                 <div className="area">
                                     <label>Nome:</label>
                                     <input 
@@ -90,7 +90,7 @@ const Page = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="shrink-1">
+                            <div className="pag-1">
                                 <div className="area">
                                     <label>E-mail:</label>
                                     <input 
@@ -102,12 +102,12 @@ const Page = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="shrink-1">
+                            <div className="pag-1">
                                 <div className="area">
                                     <label>Estado:</label>
                                     <select  
                                         disabled={disabled} 
-                                        onChange={e=>setEstado(e.target.value)}
+                                        onChange={e=>setEstates(e.target.value)}
                                     >
                                         {listaDeEstados.map((i, k)=>
                                             <option key={k} value={i.slug}>{i.name}</option>
@@ -115,7 +115,7 @@ const Page = () => {
                                     </select>
                                 </div>
                             </div>
-                            <div className="shrink-3">
+                            <div className="pag-3">
                                 <div className="area">
                                     <button disabled={disabled}>Salvar</button>
                                 </div>
@@ -124,7 +124,7 @@ const Page = () => {
                     </form>
                     </div>
                     <h2>Meus anúncios</h2>
-                    <div className="sessao">
+                    <div className="session">
                         <div className="anunciosUser">
                             {adsUser.map((i, k)=>
                                 <AdItem key={k} data={i}/>
