@@ -87,4 +87,31 @@ export const PageArea = styled.div`
         font-size:12px;
         margin-bottom:30px;
     }
+    @media(max-width:600px){
+        .sessao{
+            padding:10px;
+            margin-bottom:20px;
+            border-radius:8px;
+        }
+        .formConta{
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            .shrink-1 {
+                width:90%;
+                flex-grow: 1;
+                flex-shrink: 1;
+            }
+            .shrink-3 {
+                width:90%;
+                flex-grow: 1;
+                flex-shrink: 1;
+                flex-basis: 0;
+            }
+            .area{
+                width:100%;
+                margin:0;
+            }
+        }
+    }
     `;
