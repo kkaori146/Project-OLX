@@ -76,4 +76,27 @@ nav {
         }
     }
 }
+
+@media (max-width:600px) {
+    & {
+        height: auto;
+    }
+        .container {
+            flex-direction: column;
+        
+        }
+        .logo {
+            justify-contet: center;
+            margin: 20px;
+            margin-left: 155px;
+        }
+        nav ul {
+            flex-direction:column;
+            height: auto; 
+
+        }
+        nav li {
+            margin: 10px 20px;
+        }
+    }
 `;
